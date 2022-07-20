@@ -5,6 +5,8 @@ import ru.netology.stats.StartService;
 
 public class StartServiceTest {
 
+    private int[] totalSales = {8 + 15 + 13 + 15 + 17 + 20 + 19 + 20 + 7 + 14 + 14 + 18};
+    private int[] everySales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
 
     // 1 тест - сумма продаж
     @Test
@@ -22,7 +24,7 @@ public class StartServiceTest {
         StartService service = new StartService();
         int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
         int result = service.sumSales(sales) / sales.length;
-        Assertions.assertEquals(12, result);
+        Assertions.assertEquals(15, result);
 
     }
 
@@ -33,7 +35,7 @@ public class StartServiceTest {
         long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
 
         int actual = service.maxSales(sales);
-        int expected = 6;
+        int expected = 8;
 
         Assertions.assertEquals(actual, expected);
     }
@@ -42,12 +44,10 @@ public class StartServiceTest {
     @Test
     public void shouldFindMinSales() {
         StartService service = new StartService();
-        long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
 
-        int actual = service.minSales(sales);
-        int expected = 8;
+        int result = service.minSales(everySales);
 
-        Assertions.assertEquals(actual, expected);
+        Assertions.assertEquals(9, result);
     }
 
     // 5 тест - Кол-во месяцев, в которых продажи были ниже среднего
@@ -56,8 +56,8 @@ public class StartServiceTest {
     public void findMonthBelowAverage() {
 
         StartService service = new StartService();
-        int result = service.belowAverage();
-        Assertions.assertEquals(result, 7);
+        int result = service.belowAverage(everySales);
+        Assertions.assertEquals(5, result);
     }
 
 // 6 тест - Кол-во месяцев, в которых продажи были выше среднего
@@ -66,8 +66,8 @@ public class StartServiceTest {
     public void findMonthAboveAverage() {
 
         StartService service = new StartService();
-        int result = service.belowAverage();
-        Assertions.assertEquals(result, 5);
+        int result = service.aboveAverage(everySales);
+        Assertions.assertEquals(5, result);
     }
 }
 
